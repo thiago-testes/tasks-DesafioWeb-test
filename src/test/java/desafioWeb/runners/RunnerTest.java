@@ -49,7 +49,7 @@ import io.cucumber.junit.CucumberOptions.SnippetType;
 		plugin = {"pretty", "html:target/report-html", "json:target/report.json"},
 		monochrome = true,
 		snippets = SnippetType.UNDERSCORE,
-		dryRun = true,
+		dryRun = false,
 		strict = false)
 
 public class RunnerTest {
