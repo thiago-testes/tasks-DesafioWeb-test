@@ -43,7 +43,7 @@ public class DesafioWeb_StepDefinitions {
 			Screenshot.takeScreenshot(driver);
 
 		} catch (Exception e) {
-			Assert.fail("Erro ao inserir um produto no campo de pesquisa. Motivo: \" + e");
+			Assert.fail("Erro ao inserir um tipo de produto no campo de pesquisa. Motivo: \" + e");
 		}
 	}
 
@@ -109,13 +109,13 @@ public class DesafioWeb_StepDefinitions {
 		}
 	}
 
-	@Then("clico no botao Continuar sem garantia estendida")
-	public void clico_no_botao_Continuar_sem_garantia_estendida() {
+	@Then("clico no botao Continuar da tela garantia estendida")
+	public void clico_no_botao_Continuar_da_tela_garantia_estendida() {
 
 		try {
 
 			// Espera fixa para aguardar o carregamento dos elementos na página
-			GeneralFunctions.wait(5000);
+			GeneralFunctions.wait(2000);
 
 			// Clicando no botão 'Continuar' da página de Garantia Estendida
 			driver.findElement(By.id("btn-continue")).click();
@@ -147,11 +147,51 @@ public class DesafioWeb_StepDefinitions {
 		} catch (Exception e) {
 			Assert.fail("Erro ao tentar validar o produto na página 'Meu Carrinho'. Motivo: \" + e");
 		}
+
+	}
+
+	@Then("seleciono garantia estendida doze meses")
+	public void seleciono_garantia_estendida_doze_meses() {
+
+		try {
+
+			// Clicando para selecionar garantia estendida doze meses
+			driver.findElement(By.xpath(
+					"//div[@class='service-options__ViewOptionsDesktop-sc-6v3x4r-3 cYVePr ViewUI-sc-1ijittn-6 iXIDWU']"))
+					.click();
+
+			// Tirando print ao selecionar garantia estendida doze meses
+			Screenshot.takeScreenshot(driver);
+
+		} catch (Exception e) {
+			Assert.fail("Erro ao tentar selecionar garantia estendida doze meses. Motivo: \" + e");
+		}
+
+	}
+
+	@Then("valido a garantia estendida no meu carrinho")
+	public void valido_a_garantia_estendida_no_meu_carrinho() {
+
+		try {
+
+			// Validando a seção da página 'Meu Carrinho'
+			String paginaMeuCarrinho = driver.findElement(By.xpath("//h2[@class='page-title col-xs-7']")).getText();
+			Assert.assertEquals("Meu carrinho", paginaMeuCarrinho);
+
+			// Validando a garantia estendida no 'Meu Carrinho'
+			String garantiaEscolhida = driver.findElement(By.className("extended-warranty")).getText();
+			Assert.assertEquals("+ 1 ano protegido", garantiaEscolhida);
+
+			// Tirando print da garantia estendida no 'Meu Carrinho'
+			Screenshot.takeScreenshot(driver);
+
+		} catch (Exception e) {
+			Assert.fail("Erro ao tentar validar a garantia estendida na página 'Meu Carrinho'. Motivo: \" + e");
+		}
 	}
 
 	@After(order = 0)
 	public void tearDown() {
 		driver.quit();
 	}
-
 }
