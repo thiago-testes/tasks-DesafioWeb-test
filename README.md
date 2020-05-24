@@ -1,7 +1,7 @@
 # Desafio Zup - Automação Web (Projeto)
 Autor: Thiago Ferreira
 
-# Projeto
+## Projeto
 
 Ferramentas utlizadas e linguagem na criação de testes automatizados para o Desafio:
 
